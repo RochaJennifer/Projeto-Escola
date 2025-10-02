@@ -1,6 +1,9 @@
 #include <stdio.h>
 #define TAM_ALUNO 3
 
+int menuGeral();
+int menuAluno();
+
 typedef struct alu{
     int matricula;
     char sexo;
@@ -30,7 +33,36 @@ int main(void) {
     
     case 1:
         printf("Módulo Aluno\n");
-        break;
+        int sairAluno = 0;
+        int opcaoAluno
+        while(!sair){
+            opcaoAluno =menuAluno();
+            switch (opcaoAluno)
+            {
+            case 0:{
+                sairAluno = 1;
+                break;
+            }
+            case 1:{
+                printf("Cadastrar Aluno\n");
+                if (qtdAluno == TAM_ALUNO){
+                    printf("Lista de alunos cheia\n");
+                }else{
+                    printf("Digite a matricula\n");
+                    int matricula;
+                    scanf("%d", &matricula);
+                    if(matricula < 0){
+                        printf("Matrícula inválida\n");
+                    }
+                    listaAluno[qtdAluno].matricula = matricula;
+                    listaAluno[qtdAluno].ativo = 1
+                    qtdAluno++;
+                    printf("Cadastrado com sucesso\n");
+                }
+
+                break;
+            }
+        }
 
     case 2:
         printf("Módulo Professor\n");
@@ -42,7 +74,7 @@ int main(void) {
     default:
         printf("Opção invalida\n");
         break;
-    }
+        }
 
     return 0;
 }
