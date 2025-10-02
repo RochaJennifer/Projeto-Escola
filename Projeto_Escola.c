@@ -1,12 +1,20 @@
 #include <stdio.h>
+#define TAM_ALUNO 3
+
+typedef struct alu{
+    int matricula;
+    char sexo;
+    int ativo;
+} Aluno;
 
 int main(void) {
-
+ 
+    Aluno listaAluno[TAM_ALUNO];
     int opcao;
+    int qtdAluno = 0;
     int sair = 0;//false
 
     while(!sair){
-
     printf("Projeto Escola\n");
     printf("0-Sair\n");
     printf("1-Aluno\n");
