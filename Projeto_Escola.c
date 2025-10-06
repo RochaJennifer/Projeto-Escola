@@ -3,7 +3,6 @@
 
 #define TAM_ALUNO 3
 #define TAM_PROFESSOR 3
-
 typedef struct {
     int dia;
     int mes;
@@ -29,7 +28,6 @@ typedef struct {
     int ativo;
 } Professor;
 
-
 void limparBuffer();
 
 int menuAluno();
@@ -39,8 +37,6 @@ void listarAlunos(Aluno lista[], int qtd);
 int menuProfessor();
 void cadastrarProfessor(Professor lista[], int *qtd);
 void listarProfessores(Professor lista[], int qtd);
-
-
 
 int main(void) {
  
@@ -81,13 +77,21 @@ int main(void) {
                             cadastrarAluno(listaAluno, &qtdAluno);
                             break;
                         }
-                        case 2: 
+                        case 2: {
                             listarAlunos(listaAluno, qtdAluno); 
                             break;
-                        default: {
-                            printf("\nOpcao invalida!\n");
+                        }
+                        case 3: {
+                            printf("\n-- Atualizar Aluno --\n");
                             break;
                         }
+                        case 4: {
+                            printf("\n-- Remover Aluno --\n");
+                            break;
+                        }
+                        default:
+                            printf("\nOpcao invalida!\n");
+                            break;
                     }
                 }
                 break;
@@ -97,17 +101,28 @@ int main(void) {
                 while(!sairProfessor){
                     int opcaoProfessor = menuProfessor();
                     switch(opcaoProfessor){
-                        case 0: 
+                        case 0: {
                             sairProfessor = 1; 
                             break;
-                        case 1: 
+                        }
+                        case 1: {
                             cadastrarProfessor(listaProfessor, &qtdProfessor); 
                             break;
-                        case 2: 
+                        }
+                        case 2: {
                             listarProfessores(listaProfessor, qtdProfessor); 
                             break;
-                        default: 
-                            printf("\nOpcao invalida!\n"); 
+                        }
+                        case 3: {
+                            printf("\n-- Atualizar Professor --\n");
+                            break;
+                        }
+                        case 4: {
+                            printf("\n-- Remover Professor --\n");
+                            break;
+                        }
+                        default:
+                            printf("\nOpcao invalida!\n");
                             break;
                     }
                 }
