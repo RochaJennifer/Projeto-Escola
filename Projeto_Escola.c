@@ -2,6 +2,7 @@
 #include <string.h>
 
 #define TAM_ALUNO 3
+#define TAM_PROFESSOR 3
 
 typedef struct {
     int dia;
@@ -18,17 +19,35 @@ typedef struct {
     int ativo;
 } Aluno;
 
+typedef struct {
+    int matricula;
+    char nome[100];
+    char sexo;
+    Data dataNascimento;
+    char cpf[15];
+    char disciplina[50];
+    int ativo;
+} Professor;
+
+void limparBuffer();
 
 int menuAluno();
 void cadastrarAluno(Aluno lista[], int *qtd);
-void limparBuffer();
+
+int menuProfessor();
+void cadastrarProfessor(Professor lista[], int *qtd);
+
 
 
 int main(void) {
  
     Aluno listaAluno[TAM_ALUNO];
-    int opcao;
     int qtdAluno = 0;
+
+    Professor listaProfessor[TAM_PROFESSOR];
+    int qtdProfessor = 0;
+
+    int opcao;
     int sair = 0;
 
     while(!sair){
@@ -60,7 +79,7 @@ int main(void) {
                             break;
                         }
                         case 2: {
-                             printf("\nListar Alunos (Ainda nao implementado)\n");
+                             printf("\nListar Alunos\n");
                              break;
                         }
                         default: {
@@ -71,10 +90,23 @@ int main(void) {
                 }
                 break;
             }
-            case 2:
-                printf("\nMódulo Professor (Ainda nao implementado)\n");
+            case 2: {
+                int sairProfessor = 0;
+                while(!sairProfessor){
+                    int opcaoProfessor = menuProfessor();
+                    switch(opcaoProfessor){
+                        case 0: sairProfessor = 1; 
+                        break;
+                        case 1: cadastrarProfessor(listaProfessor, &qtdProfessor); 
+                        break;
+                        case 2: printf("\nListar Professores\n"); 
+                        break;
+                        default: printf("\nOpcao invalida!\n"); 
+                        break;
+                    }
+                }
                 break;
-
+            }
             case 3:
                 printf("\nMódulo Disciplinas (Ainda nao implementado)\n");
                 break;
@@ -148,4 +180,53 @@ void cadastrarAluno(Aluno lista[], int *qtd){
     (*qtd)++;
     
     printf("\nAluno cadastrado com sucesso!\n");
+}
+
+    int menuProfessor(){
+    int opcao;
+    printf("\n-- Menu Professor --\n");
+    printf("1 - Cadastrar Professor\n");
+    printf("2 - Listar Professores\n");
+    printf("0 - Voltar ao menu principal\n");
+    printf("Digite sua opcao: ");
+    scanf("%d", &opcao);
+    return opcao;
+    }
+
+    void cadastrarProfessor(Professor lista[], int *qtd){
+    printf("\n-- Cadastro de Professor --\n");
+    if (*qtd == TAM_PROFESSOR){ printf("Lista de professores cheia!\n"); return; }
+    
+    printf("Digite a matricula: ");
+    scanf("%d", &lista[*qtd].matricula);
+    if (lista[*qtd].matricula <= 0){ printf("Matrícula invalida!\n"); return; }
+    
+    limparBuffer();
+    
+    printf("Digite o nome: ");
+    fgets(lista[*qtd].nome, 100, stdin);
+    lista[*qtd].nome[strcspn(lista[*qtd].nome, "\n")] = 0;
+    
+    printf("Digite o sexo (M/F): ");
+    scanf(" %c", &lista[*qtd].sexo);
+    while (lista[*qtd].sexo != 'M' && lista[*qtd].sexo != 'm' && lista[*qtd].sexo != 'F' && lista[*qtd].sexo != 'f') {
+        printf("Sexo invalido! Digite M ou F: ");
+        scanf(" %c", &lista[*qtd].sexo);
+    }
+    
+    limparBuffer();
+    
+    printf("Digite a data de nascimento (dd mm aaaa): ");
+    scanf("%d %d %d", &lista[*qtd].dataNascimento.dia, &lista[*qtd].dataNascimento.mes, &lista[*qtd].dataNascimento.ano);
+    
+    limparBuffer();
+    
+    printf("Digite o CPF: ");
+    fgets(lista[*qtd].cpf, 15, stdin);
+    lista[*qtd].cpf[strcspn(lista[*qtd].cpf, "\n")] = 0;
+    
+    lista[*qtd].ativo = 1;
+    (*qtd)++;
+    
+    printf("\nProfessor cadastrado com sucesso!\n");
 }
