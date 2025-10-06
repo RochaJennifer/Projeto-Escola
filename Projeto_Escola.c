@@ -29,13 +29,16 @@ typedef struct {
     int ativo;
 } Professor;
 
+
 void limparBuffer();
 
 int menuAluno();
 void cadastrarAluno(Aluno lista[], int *qtd);
+void listarAlunos(Aluno lista[], int qtd);
 
 int menuProfessor();
 void cadastrarProfessor(Professor lista[], int *qtd);
+void listarProfessores(Professor lista[], int qtd);
 
 
 
@@ -78,10 +81,9 @@ int main(void) {
                             cadastrarAluno(listaAluno, &qtdAluno);
                             break;
                         }
-                        case 2: {
-                             printf("\nListar Alunos\n");
-                             break;
-                        }
+                        case 2: 
+                            listarAlunos(listaAluno, qtdAluno); 
+                            break;
                         default: {
                             printf("\nOpcao invalida!\n");
                             break;
@@ -95,14 +97,18 @@ int main(void) {
                 while(!sairProfessor){
                     int opcaoProfessor = menuProfessor();
                     switch(opcaoProfessor){
-                        case 0: sairProfessor = 1; 
-                        break;
-                        case 1: cadastrarProfessor(listaProfessor, &qtdProfessor); 
-                        break;
-                        case 2: printf("\nListar Professores\n"); 
-                        break;
-                        default: printf("\nOpcao invalida!\n"); 
-                        break;
+                        case 0: 
+                            sairProfessor = 1; 
+                            break;
+                        case 1: 
+                            cadastrarProfessor(listaProfessor, &qtdProfessor); 
+                            break;
+                        case 2: 
+                            listarProfessores(listaProfessor, qtdProfessor); 
+                            break;
+                        default: 
+                            printf("\nOpcao invalida!\n"); 
+                            break;
                     }
                 }
                 break;
@@ -182,6 +188,27 @@ void cadastrarAluno(Aluno lista[], int *qtd){
     printf("\nAluno cadastrado com sucesso!\n");
 }
 
+void listarAlunos(Aluno lista[], int qtd) {
+    printf("\n-- Lista de Alunos --\n");
+    if (qtd == 0) {
+        printf("Nenhum aluno cadastrado.\n");
+        return;
+    }
+    for (int i = 0; i < qtd; i++) {
+        if (lista[i].ativo == 1) {
+            printf("-------------------------\n");
+            printf("Matrícula: %d\n", lista[i].matricula);
+            printf("Nome: %s\n", lista[i].nome);
+            printf("Sexo: %c\n", lista[i].sexo);
+            printf("Data de Nasc.: %02d/%02d/%d\n", lista[i].dataNascimento.dia,
+                                                    lista[i].dataNascimento.mes,
+                                                    lista[i].dataNascimento.ano);
+            printf("CPF: %s\n", lista[i].cpf);
+        }
+    }
+    printf("-------------------------\n");
+}
+
     int menuProfessor(){
     int opcao;
     printf("\n-- Menu Professor --\n");
@@ -229,4 +256,25 @@ void cadastrarAluno(Aluno lista[], int *qtd){
     (*qtd)++;
     
     printf("\nProfessor cadastrado com sucesso!\n");
+}
+
+void listarProfessores(Professor lista[], int qtd) {
+    printf("\n-- Lista de Professores --\n");
+    if (qtd == 0) {
+        printf("Nenhum professor cadastrado.\n");
+        return;
+    }
+    for (int i = 0; i < qtd; i++) {
+        if (lista[i].ativo == 1) {
+            printf("-------------------------\n");
+            printf("Matrícula: %d\n", lista[i].matricula);
+            printf("Nome: %s\n", lista[i].nome);
+            printf("Sexo: %c\n", lista[i].sexo);
+            printf("Data de Nasc.: %02d/%02d/%d\n", lista[i].dataNascimento.dia,
+                                                    lista[i].dataNascimento.mes,
+                                                    lista[i].dataNascimento.ano);
+            printf("CPF: %s\n", lista[i].cpf);
+        }
+    }
+    printf("-------------------------\n");
 }
