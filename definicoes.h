@@ -31,11 +31,13 @@ void limparBuffer();
 int menuAluno();
 void cadastrarAluno(Aluno lista[], int *qtd);
 void listarAlunos(Aluno lista[], int qtd);
+void atualizarAluno(Aluno lista[], int qtd);
 void excluirAluno(Aluno lista[], int qtd);
 
 int menuProfessor();
 void cadastrarProfessor(Professor lista[], int *qtd);
 void listarProfessores(Professor lista[], int qtd);
+void atualizarProfessor(Professor lista[], int qtd);
 void excluirProfessor(Professor lista[], int qtd);
 
 #endif 

@@ -45,7 +45,7 @@ int main(void) {
                             break;
                         }
                         case 3: {
-                            printf("\n-- Atualizar Aluno --\n");
+                            atualizarAluno(listaAluno, qtdAluno);
                             break;
                         }
                         case 4: {
@@ -77,7 +77,7 @@ int main(void) {
                             break;
                         }
                         case 3: {
-                            printf("\n-- Atualizar Professor --\n");
+                            atualizarProfessor(listaProfessor, qtdProfessor);
                             break;
                         }
                         case 4: {

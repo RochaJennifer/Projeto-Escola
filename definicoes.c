@@ -88,6 +88,51 @@ void listarAlunos(Aluno lista[], int qtd) {
     printf("-------------------------\n");
 }
 
+void atualizarAluno(Aluno lista[], int qtd) {
+    int matricula, encontrado = 0;
+
+    printf("\n-- Atualizar Aluno --\n");
+    printf("Digite a matrícula do aluno a ser atualizado: ");
+    scanf("%d", &matricula);
+
+    limparBuffer();
+
+    for (int i = 0; i < qtd; i++) {
+        if (lista[i].dados.matricula == matricula && lista[i].dados.ativo == 1) {
+            printf("Digite o novo nome: ");
+            fgets(lista[i].dados.nome, 100, stdin);
+            lista[i].dados.nome[strcspn(lista[i].dados.nome, "\n")] = 0;
+
+            printf("Digite o novo sexo (M/F): ");
+            scanf(" %c", &lista[i].dados.sexo);
+            while (lista[i].dados.sexo != 'M' && lista[i].dados.sexo != 'm' && 
+                   lista[i].dados.sexo != 'F' && lista[i].dados.sexo != 'f') {
+                printf("Sexo invalido! Digite M ou F: ");
+                scanf(" %c", &lista[i].dados.sexo);
+            }
+            limparBuffer();
+
+            printf("Digite a nova data de nascimento (dd mm aaaa): ");
+            scanf("%d %d %d", &lista[i].dados.dataNascimento.dia,
+                                &lista[i].dados.dataNascimento.mes,
+                                &lista[i].dados.dataNascimento.ano);
+            limparBuffer();
+
+            printf("Digite o novo CPF: ");
+            fgets(lista[i].dados.cpf, 15, stdin);
+            lista[i].dados.cpf[strcspn(lista[i].dados.cpf, "\n")] = 0;
+
+            encontrado = 1;
+            printf("Aluno de matricula %d atualizado com sucesso!\n", matricula);
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("Aluno com a matricula %d não encontrado ou está excluído.\n", matricula);
+    }
+}
+
 void excluirAluno(Aluno lista[], int qtd) {
     int matricula, encontrado = 0;
 
@@ -181,6 +226,51 @@ void listarProfessores(Professor lista[], int qtd) {
         }
     }
     printf("-------------------------\n");
+}
+
+void atualizarProfessor(Professor lista[], int qtd) {
+    int matricula, encontrado = 0;
+
+    printf("\n-- Atualizar Professor --\n");
+    printf("Digite a matrícula do professor a ser atualizado: ");
+    scanf("%d", &matricula);
+
+    limparBuffer();
+
+    for (int i = 0; i < qtd; i++) {
+        if (lista[i].dados.matricula == matricula && lista[i].dados.ativo == 1) {
+            printf("Digite o novo nome: ");
+            fgets(lista[i].dados.nome, 100, stdin);
+            lista[i].dados.nome[strcspn(lista[i].dados.nome, "\n")] = 0;
+
+            printf("Digite o novo sexo (M/F): ");
+            scanf(" %c", &lista[i].dados.sexo);
+            while (lista[i].dados.sexo != 'M' && lista[i].dados.sexo != 'm' && 
+                   lista[i].dados.sexo != 'F' && lista[i].dados.sexo != 'f') {
+                printf("Sexo invalido! Digite M ou F: ");
+                scanf(" %c", &lista[i].dados.sexo);
+            }
+            limparBuffer();
+
+            printf("Digite a nova data de nascimento (dd mm aaaa): ");
+            scanf("%d %d %d", &lista[i].dados.dataNascimento.dia,
+                                &lista[i].dados.dataNascimento.mes,
+                                &lista[i].dados.dataNascimento.ano);
+            limparBuffer();
+
+            printf("Digite o novo CPF: ");
+            fgets(lista[i].dados.cpf, 15, stdin);
+            lista[i].dados.cpf[strcspn(lista[i].dados.cpf, "\n")] = 0;
+
+            encontrado = 1;
+            printf("Professor de matricula %d atualizado com sucesso!\n", matricula);
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("Professor com a matricula %d não encontrado ou está excluído.\n", matricula);
+    }
 }
 
 void excluirProfessor(Professor lista[], int qtd) {
