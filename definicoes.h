@@ -31,6 +31,7 @@ void limparBuffer();
 int menuAluno();
 void cadastrarAluno(Aluno lista[], int *qtd);
 void listarAlunos(Aluno lista[], int qtd);
+void excluirAluno(Aluno lista[], int qtd);
 
 int menuProfessor();
 void cadastrarProfessor(Professor lista[], int *qtd);

@@ -88,6 +88,27 @@ void listarAlunos(Aluno lista[], int qtd) {
     printf("-------------------------\n");
 }
 
+void excluirAluno(Aluno lista[], int qtd) {
+    int matricula, encontrado = 0;
+
+    printf("\n-- Excluir Aluno --\n");
+    printf("Digite a matrícula do aluno a ser excluído: ");
+    scanf("%d", &matricula);
+
+    for (int i = 0; i < qtd; i++) {
+        if (lista[i].dados.matricula == matricula) {
+            lista[i].dados.ativo = 0;
+            encontrado = 1;
+            printf("Aluno de matricula %d excluído com sucesso!\n", matricula);
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("Aluno com a matricula %d não encontrado ou já excluído.\n", matricula);
+    }
+}
+
     int menuProfessor(){
     int opcao;
     printf("\n-- Menu Professor --\n");
