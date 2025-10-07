@@ -13,19 +13,17 @@ typedef struct {
     int matricula;
     char nome[100];
     char sexo;
-    Data dataNascimento;
+    Data dataNascimento;;
     char cpf[15];
     int ativo;
+} DadosComuns;
+
+typedef struct {
+    DadosComuns dados;
 } Aluno;
 
 typedef struct {
-    int matricula;
-    char nome[100];
-    char sexo;
-    Data dataNascimento;
-    char cpf[15];
-    char disciplina[50];
-    int ativo;
+    DadosComuns dados;
 } Professor;
 
 void limparBuffer();

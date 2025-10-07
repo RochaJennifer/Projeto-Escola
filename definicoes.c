@@ -1,4 +1,4 @@
-# include <stdio.h>
+#include <stdio.h>
 #include <string.h>
 #include "definicoes.h"
 
@@ -11,6 +11,8 @@ int menuAluno(){
     int opcao;
     printf("\n1 - Cadastrar Aluno\n");
     printf("2 - Listar Alunos\n");
+    printf("3 - Atualizar Aluno\n");
+    printf("4 - Excluir Aluno\n");
     printf("0 - Voltar ao menu principal\n");
     printf("Digite sua opcao: ");
     scanf("%d", &opcao);
@@ -26,9 +28,9 @@ void cadastrarAluno(Aluno lista[], int *qtd){
     }
 
     printf("Digite a matricula: ");
-    scanf("%d", &lista[*qtd].matricula);
+    scanf("%d", &lista[*qtd].dados.matricula);
 
-    if (lista[*qtd].matricula <= 0){
+    if (lista[*qtd].dados.matricula <= 0){
         printf("Matrícula invalida!\n");
         return;
     }
@@ -36,30 +38,30 @@ void cadastrarAluno(Aluno lista[], int *qtd){
     limparBuffer();
 
     printf("Digite o nome: ");
-    fgets(lista[*qtd].nome, 100, stdin);
-    lista[*qtd].nome[strcspn(lista[*qtd].nome, "\n")] = 0;
+    fgets(lista[*qtd].dados.nome, 100, stdin);
+    lista[*qtd].dados.nome[strcspn(lista[*qtd].dados.nome, "\n")] = 0;
 
     printf("Digite o sexo (M/F): ");
-    scanf(" %c", &lista[*qtd].sexo); 
+    scanf(" %c", &lista[*qtd].dados.sexo);
 
-    while (lista[*qtd].sexo != 'M' && lista[*qtd].sexo != 'm' && 
-           lista[*qtd].sexo != 'F' && lista[*qtd].sexo != 'f') {
+    while (lista[*qtd].dados.sexo != 'M' && lista[*qtd].dados.sexo != 'm' && 
+           lista[*qtd].dados.sexo != 'F' && lista[*qtd].dados.sexo != 'f') {
         printf("Sexo invalido! Digite M ou F: ");
-        scanf(" %c", &lista[*qtd].sexo);
+        scanf(" %c", &lista[*qtd].dados.sexo);
     }
     limparBuffer();
 
     printf("Digite a data de nascimento (dd mm aaaa): ");
-    scanf("%d %d %d", &lista[*qtd].dataNascimento.dia,
-                        &lista[*qtd].dataNascimento.mes,
-                        &lista[*qtd].dataNascimento.ano);
-    limparBuffer(); 
+    scanf("%d %d %d", &lista[*qtd].dados.dataNascimento.dia,
+                        &lista[*qtd].dados.dataNascimento.mes,
+                        &lista[*qtd].dados.dataNascimento.ano);
+    limparBuffer();
 
     printf("Digite o CPF: ");
-    fgets(lista[*qtd].cpf, 15, stdin);
-    lista[*qtd].cpf[strcspn(lista[*qtd].cpf, "\n")] = 0;
-    
-    lista[*qtd].ativo = 1;
+    fgets(lista[*qtd].dados.cpf, 15, stdin);
+    lista[*qtd].dados.cpf[strcspn(lista[*qtd].dados.cpf, "\n")] = 0;
+
+    lista[*qtd].dados.ativo = 1;
     (*qtd)++;
     
     printf("\nAluno cadastrado com sucesso!\n");
@@ -72,15 +74,15 @@ void listarAlunos(Aluno lista[], int qtd) {
         return;
     }
     for (int i = 0; i < qtd; i++) {
-        if (lista[i].ativo == 1) {
+        if (lista[i].dados.ativo == 1) {
             printf("-------------------------\n");
-            printf("Matrícula: %d\n", lista[i].matricula);
-            printf("Nome: %s\n", lista[i].nome);
-            printf("Sexo: %c\n", lista[i].sexo);
-            printf("Data de Nasc.: %02d/%02d/%d\n", lista[i].dataNascimento.dia,
-                                                    lista[i].dataNascimento.mes,
-                                                    lista[i].dataNascimento.ano);
-            printf("CPF: %s\n", lista[i].cpf);
+            printf("Matrícula: %d\n", lista[i].dados.matricula);
+            printf("Nome: %s\n", lista[i].dados.nome);
+            printf("Sexo: %c\n", lista[i].dados.sexo);
+            printf("Data de Nasc.: %02d/%02d/%d\n", lista[i].dados.dataNascimento.dia,
+                                                    lista[i].dados.dataNascimento.mes,
+                                                    lista[i].dados.dataNascimento.ano);
+            printf("CPF: %s\n", lista[i].dados.cpf);
         }
     }
     printf("-------------------------\n");
@@ -91,6 +93,8 @@ void listarAlunos(Aluno lista[], int qtd) {
     printf("\n-- Menu Professor --\n");
     printf("1 - Cadastrar Professor\n");
     printf("2 - Listar Professores\n");
+    printf("3 - Atualizar Professor\n");
+    printf("4 - Excluir Professor\n");
     printf("0 - Voltar ao menu principal\n");
     printf("Digite sua opcao: ");
     scanf("%d", &opcao);
@@ -102,34 +106,34 @@ void listarAlunos(Aluno lista[], int qtd) {
     if (*qtd == TAM_PROFESSOR){ printf("Lista de professores cheia!\n"); return; }
     
     printf("Digite a matricula: ");
-    scanf("%d", &lista[*qtd].matricula);
-    if (lista[*qtd].matricula <= 0){ printf("Matrícula invalida!\n"); return; }
-    
+    scanf("%d", &lista[*qtd].dados.matricula);
+    if (lista[*qtd].dados.matricula <= 0){ printf("Matrícula invalida!\n"); return; }
+
     limparBuffer();
     
     printf("Digite o nome: ");
-    fgets(lista[*qtd].nome, 100, stdin);
-    lista[*qtd].nome[strcspn(lista[*qtd].nome, "\n")] = 0;
+    fgets(lista[*qtd].dados.nome, 100, stdin);
+    lista[*qtd].dados.nome[strcspn(lista[*qtd].dados.nome, "\n")] = 0;
     
     printf("Digite o sexo (M/F): ");
-    scanf(" %c", &lista[*qtd].sexo);
-    while (lista[*qtd].sexo != 'M' && lista[*qtd].sexo != 'm' && lista[*qtd].sexo != 'F' && lista[*qtd].sexo != 'f') {
+    scanf(" %c", &lista[*qtd].dados.sexo);
+    while (lista[*qtd].dados.sexo != 'M' && lista[*qtd].dados.sexo != 'm' && lista[*qtd].dados.sexo != 'F' && lista[*qtd].dados.sexo != 'f') {
         printf("Sexo invalido! Digite M ou F: ");
-        scanf(" %c", &lista[*qtd].sexo);
+        scanf(" %c", &lista[*qtd].dados.sexo);
     }
     
     limparBuffer();
     
     printf("Digite a data de nascimento (dd mm aaaa): ");
-    scanf("%d %d %d", &lista[*qtd].dataNascimento.dia, &lista[*qtd].dataNascimento.mes, &lista[*qtd].dataNascimento.ano);
+    scanf("%d %d %d", &lista[*qtd].dados.dataNascimento.dia, &lista[*qtd].dados.dataNascimento.mes, &lista[*qtd].dados.dataNascimento.ano);
     
     limparBuffer();
     
     printf("Digite o CPF: ");
-    fgets(lista[*qtd].cpf, 15, stdin);
-    lista[*qtd].cpf[strcspn(lista[*qtd].cpf, "\n")] = 0;
-    
-    lista[*qtd].ativo = 1;
+    fgets(lista[*qtd].dados.cpf, 15, stdin);
+    lista[*qtd].dados.cpf[strcspn(lista[*qtd].dados.cpf, "\n")] = 0;
+
+    lista[*qtd].dados.ativo = 1;
     (*qtd)++;
     
     printf("\nProfessor cadastrado com sucesso!\n");
@@ -142,15 +146,15 @@ void listarProfessores(Professor lista[], int qtd) {
         return;
     }
     for (int i = 0; i < qtd; i++) {
-        if (lista[i].ativo == 1) {
+        if (lista[i].dados.ativo == 1) {
             printf("-------------------------\n");
-            printf("Matrícula: %d\n", lista[i].matricula);
-            printf("Nome: %s\n", lista[i].nome);
-            printf("Sexo: %c\n", lista[i].sexo);
-            printf("Data de Nasc.: %02d/%02d/%d\n", lista[i].dataNascimento.dia,
-                                                    lista[i].dataNascimento.mes,
-                                                    lista[i].dataNascimento.ano);
-            printf("CPF: %s\n", lista[i].cpf);
+            printf("Matrícula: %d\n", lista[i].dados.matricula);
+            printf("Nome: %s\n", lista[i].dados.nome);
+            printf("Sexo: %c\n", lista[i].dados.sexo);
+            printf("Data de Nasc.: %02d/%02d/%d\n", lista[i].dados.dataNascimento.dia,
+                                                    lista[i].dados.dataNascimento.mes,
+                                                    lista[i].dados.dataNascimento.ano);
+            printf("CPF: %s\n", lista[i].dados.cpf);
         }
     }
     printf("-------------------------\n");
