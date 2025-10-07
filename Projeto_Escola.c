@@ -81,7 +81,7 @@ int main(void) {
                             break;
                         }
                         case 4: {
-                            printf("\n-- Excluir Professor --\n");
+                            excluirProfessor(listaProfessor, qtdProfessor);
                             break;
                         }
                         default:

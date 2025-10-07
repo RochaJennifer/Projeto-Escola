@@ -95,6 +95,8 @@ void excluirAluno(Aluno lista[], int qtd) {
     printf("Digite a matrícula do aluno a ser excluído: ");
     scanf("%d", &matricula);
 
+    limparBuffer();
+
     for (int i = 0; i < qtd; i++) {
         if (lista[i].dados.matricula == matricula) {
             lista[i].dados.ativo = 0;
@@ -179,4 +181,28 @@ void listarProfessores(Professor lista[], int qtd) {
         }
     }
     printf("-------------------------\n");
+}
+
+void excluirProfessor(Professor lista[], int qtd) {
+    int matricula, encontrado = 0;
+
+    printf("\n-- Excluir Professor --\n");
+    printf("Digite a matrícula do professor a ser excluído: ");
+    scanf("%d", &matricula);
+
+        limparBuffer();
+
+
+    for (int i = 0; i < qtd; i++) {
+        if (lista[i].dados.matricula == matricula) {
+            lista[i].dados.ativo = 0;
+            encontrado = 1;
+            printf("Professor de matricula %d excluído com sucesso!\n", matricula);
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("Professor com a matricula %d não encontrado ou já excluído.\n", matricula);
+    }
 }

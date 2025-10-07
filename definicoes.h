@@ -36,5 +36,6 @@ void excluirAluno(Aluno lista[], int qtd);
 int menuProfessor();
 void cadastrarProfessor(Professor lista[], int *qtd);
 void listarProfessores(Professor lista[], int qtd);
+void excluirProfessor(Professor lista[], int qtd);
 
 #endif 
