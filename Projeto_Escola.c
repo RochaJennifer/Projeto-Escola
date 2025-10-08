@@ -21,7 +21,6 @@ int main(void) {
         printf("1 - Aluno\n");
         printf("2 - Professor\n");
         printf("3 - Disciplina\n");
-        printf("4 - Relatórios\n");
         printf("Digite sua opcao: ");
         scanf("%d", &opcao);
 
@@ -64,6 +63,7 @@ int main(void) {
                 break;
             }
             case 2: {
+                printf("\n-- Módulo Professor--\n");
                 int sairProfessor = 0;
                 while(!sairProfessor){
                     int opcaoProfessor = menuProfessor();
@@ -96,6 +96,7 @@ int main(void) {
                 break;
             }
             case 3:{
+                printf("\n-- Módulo Disciplina --\n");
                 int sairDisciplina = 0;
                 while(!sairDisciplina){
                     int opcaoDisciplina = menuDisciplina();
@@ -126,11 +127,6 @@ int main(void) {
                     }
                 }
                 break;
-            }
-            case 4: {
-                printf("\nRelatórios (não implementado)\n");
-                break;
-            }
             default:
                 printf("\nOpcao invalida\n");
                 break;
