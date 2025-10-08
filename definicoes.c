@@ -311,7 +311,7 @@ int menuDisciplina(){
 void cadastrarDisciplina(Disciplina listaDisc[], int *qtdDisc, Professor listaProf[], int qtdProf) {
     printf("\n-- Cadastro de Disciplina --\n");
     
-    if (*qtdDisc == TAM_DISCIPLINA) {
+    if (*qtdDisc == VAGAS_DISCIPLINA) {
         printf("Limite de disciplinas atingido!\n");
         return;
     }
@@ -341,7 +341,7 @@ void cadastrarDisciplina(Disciplina listaDisc[], int *qtdDisc, Professor listaPr
 
     do {
         printf("\n-- Professores Disponiveis --\n");
-        listarProfessores(listaProf, qtdProf); // Mostra os professores
+        listarProfessores(listaProf, qtdProf);
         printf("-------------------------\n");
         printf("Digite a matricula do professor para esta disciplina: ");
         scanf("%d", &matriculaProf);
