@@ -355,7 +355,7 @@ int menuDisciplina(){
 void cadastrarDisciplina(Disciplina listaDisc[], int *qtdDisc, Professor listaProf[], int qtdProf) {
     printf("\n-- Cadastro de Disciplina --\n");
     
-    if (*qtdDisc == VAGAS_DISCIPLINA) {
+    if (*qtdDisc ==TAM_DISCIPLINA) {
         printf("Limite de disciplinas atingido!\n");
         return;
     }

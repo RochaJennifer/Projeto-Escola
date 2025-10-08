@@ -9,7 +9,7 @@ int main(void) {
     Professor listaProfessor[TAM_PROFESSOR];
     int qtdProfessor = 0;
 
-    Disciplina listaDisc[VAGAS_DISCIPLINA];
+    Disciplina listaDisc[TAM_DISCIPLINA];
     int qtdDisc = 0;
 
     int opcao;
@@ -127,12 +127,12 @@ int main(void) {
                     }
                 }
                 break;
+                }
             default:
                 printf("\nOpcao invalida\n");
-                break;
-            }
+            break;
         }
-    
-    
+    }
+
     return 0;
 }
