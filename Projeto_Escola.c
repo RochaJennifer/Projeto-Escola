@@ -9,6 +9,9 @@ int main(void) {
     Professor listaProfessor[TAM_PROFESSOR];
     int qtdProfessor = 0;
 
+    Disciplina listaDisc[VAGAS_DISCIPLINA];
+    int qtdDisc = 0;
+
     int opcao;
     int sair = 0;
 
@@ -96,12 +99,12 @@ int main(void) {
                 while(!sairDisciplina){
                     int opcaoDisciplina = menuDisciplina();
                     switch(opcaoDisciplina){
-                        case 0: {}
+                        case 0: {
                         sairDisciplina = 1; 
                         break;
                         }
                         case 1: {
-                            cadastrarDisciplina(listaDisciplina, &qtdDisciplina, listaProfessor, qtdProfessor); 
+                            cadastrarDisciplina(listaDisc, &qtdDisc, listaProfessor, qtdProfessor); 
                             break;
                         }
                         case 2: {
@@ -114,12 +117,13 @@ int main(void) {
                     }
                 }
                 break;
-            }
+            
             default:
                 printf("\nOpcao invalida\n");
                 break;
+            }
         }
-    }
+    
     
     return 0;
 }
