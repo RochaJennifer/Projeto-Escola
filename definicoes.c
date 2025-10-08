@@ -296,3 +296,74 @@ void excluirProfessor(Professor lista[], int qtd) {
         printf("Professor com a matricula %d não encontrado ou já excluído.\n", matricula);
     }
 }
+
+int menuDisciplina(){
+    int opcao;
+    printf("\n-- Menu Disciplina --\n");
+    printf("1 - Cadastrar Disciplina\n");
+    printf("2 - Listar Disciplinas\n");
+    printf("0 - Voltar\n");
+    printf("Digite sua opcao: ");
+    scanf("%d", &opcao);
+    return opcao;
+}
+
+void cadastrarDisciplina(Disciplina listaDisc[], int *qtdDisc, Professor listaProf[], int qtdProf) {
+    printf("\n-- Cadastro de Disciplina --\n");
+    
+    if (*qtdDisc == TAM_DISCIPLINA) {
+        printf("Limite de disciplinas atingido!\n");
+        return;
+    }
+
+    printf("Digite o nome da disciplina: ");
+    limparBuffer();
+    fgets(listaDisc[*qtdDisc].nome, 100, stdin);
+    listaDisc[*qtdDisc].nome[strcspn(listaDisc[*qtdDisc].nome, "\n")] = 0;
+
+    printf("Digite o codigo da disciplina: ");
+    scanf("%d", &listaDisc[*qtdDisc].codigo);
+    
+    limparBuffer();
+
+    printf("Digite o semestre (ex: 20251 para 2025.1): ");
+    scanf("%d", &listaDisc[*qtdDisc].semestre);
+
+    limparBuffer();
+
+    if (qtdProf == 0) {
+        printf("\nERRO: Nao ha professores cadastrados para vincular a disciplina!\n");
+        return;
+    }
+
+    int matriculaProf;
+    int professorEncontrado = 0;
+
+    do {
+        printf("\n-- Professores Disponiveis --\n");
+        listarProfessores(listaProf, qtdProf); // Mostra os professores
+        printf("-------------------------\n");
+        printf("Digite a matricula do professor para esta disciplina: ");
+        scanf("%d", &matriculaProf);
+
+        limparBuffer();
+
+        for (int i = 0; i < qtdProf; i++) {
+            if (listaProf[i].dados.matricula == matriculaProf && listaProf[i].dados.ativo) {
+                listaDisc[*qtdDisc].professor_matricula = matriculaProf;
+                professorEncontrado = 1;
+                break;
+            }
+        }
+
+        if (!professorEncontrado) {
+            printf("\nMatricula de professor invalida ou inexistente. Tente novamente.\n");
+        }
+    } while (!professorEncontrado);
+        
+    listaDisc[*qtdDisc].qtd_alunos_matriculados = 0;
+    listaDisc[*qtdDisc].ativo = 1;
+    (*qtdDisc)++;
+
+    printf("\nDisciplina cadastrada com sucesso!\n");
+}

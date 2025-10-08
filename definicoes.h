@@ -3,6 +3,7 @@
 
 #define TAM_ALUNO 3
 #define TAM_PROFESSOR 3
+#define VAGAS_DISCIPLINA 40
 typedef struct {
     int dia;
     int mes;
@@ -26,6 +27,16 @@ typedef struct {
     DadosComuns dados;
 } Professor;
 
+typedef struct{
+    int codigo;
+    char nome[100];
+    int semestre;
+    int professor_matricula; //localizar profesor apartir da matricula já existente;
+    int alunos_matriculados[VAGAS_DISCIPLINA]; //Armazenar alunos inscritos
+    int qtd_alunos_matriculados;
+    int ativo;
+} Disciplina;
+
 void limparBuffer();
 
 int menuAluno();
@@ -39,5 +50,8 @@ void cadastrarProfessor(Professor lista[], int *qtd);
 void listarProfessores(Professor lista[], int qtd);
 void atualizarProfessor(Professor lista[], int qtd);
 void excluirProfessor(Professor lista[], int qtd);
+
+int menuDisciplina();
+void cadastrarDisciplina(Disciplina listaDisc[], int *qtdDisc, Professor listaProf[], int qtdProf);
 
 #endif 

@@ -92,8 +92,29 @@ int main(void) {
                 break;
             }
             case 3:
-                printf("\nMódulo Disciplinas (Ainda nao implementado)\n");
+                int sairDisciplina = 0;
+                while(!sairDisciplina){
+                    int opcaoDisciplina = menuDisciplina();
+                    switch(opcaoDisciplina){
+                        case 0: {}
+                        sairDisciplina = 1; 
+                        break;
+                        }
+                        case 1: {
+                            cadastrarDisciplina(listaDisciplina, &qtdDisciplina, listaProfessor, qtdProfessor); 
+                            break;
+                        }
+                        case 2: {
+                            printf("\nListar Disciplinas (nao implementado)\n"); 
+                            break;
+                        }
+                        default: 
+                        printf("\nOpcao invalida!\n"); 
+                        break;
+                    }
+                }
                 break;
+            }
             default:
                 printf("\nOpcao invalida\n");
                 break;
