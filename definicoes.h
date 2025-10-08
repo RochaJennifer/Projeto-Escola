@@ -31,11 +31,14 @@ typedef struct{
     int codigo;
     char nome[100];
     int semestre;
-    int professor_matricula; //localizar profesor apartir da matricula já existente;
-    int alunos_matriculados[VAGAS_DISCIPLINA]; //Armazenar alunos inscritos
+    int professor_matricula; 
+    int alunos_matriculados[VAGAS_DISCIPLINA];
     int qtd_alunos_matriculados;
     int ativo;
 } Disciplina;
+
+int validarData(Data data);
+int validarCPF(char cpf[]);
 
 void limparBuffer();
 
@@ -56,5 +59,8 @@ void cadastrarDisciplina(Disciplina listaDisc[], int *qtdDisc, Professor listaPr
 void listarDisciplinas(Disciplina listaDisc[], int qtdDisc, Professor listaProf[], int qtdProf);
 void atualizarDisciplina(Disciplina listaDisc[], int qtdDisc, Professor listaProf[], int qtdProf);
 void excluirDisciplina(Disciplina listaDisc[], int qtdDisc);
+
+
+
 
 #endif 

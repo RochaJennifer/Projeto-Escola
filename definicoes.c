@@ -51,15 +51,25 @@ void cadastrarAluno(Aluno lista[], int *qtd){
     }
     limparBuffer();
 
-    printf("Digite a data de nascimento (dd mm aaaa): ");
-    scanf("%d %d %d", &lista[*qtd].dados.dataNascimento.dia,
-                        &lista[*qtd].dados.dataNascimento.mes,
-                        &lista[*qtd].dados.dataNascimento.ano);
-    limparBuffer();
+    do {
+        printf("Digite a data de nascimento (dd mm aaaa): ");
+        scanf("%d %d %d", &lista[*qtd].dados.dataNascimento.dia,
+                            &lista[*qtd].dados.dataNascimento.mes,
+                            &lista[*qtd].dados.dataNascimento.ano);
+        limparBuffer();
+        if (!validarData(lista[*qtd].dados.dataNascimento)) {
+            printf("Data invalida! Tente novamente.\n");
+        }
+    } while (!validarData(lista[*qtd].dados.dataNascimento));
 
-    printf("Digite o CPF: ");
-    fgets(lista[*qtd].dados.cpf, 15, stdin);
-    lista[*qtd].dados.cpf[strcspn(lista[*qtd].dados.cpf, "\n")] = 0;
+    do {
+        printf("Digite o novo CPF: ");
+        fgets(lista[*qtd].dados.cpf, 15, stdin);
+        lista[*qtd].dados.cpf[strcspn(lista[*qtd].dados.cpf, "\n")] = 0;
+        if (!validarCPF(lista[*qtd].dados.cpf)) {
+        printf("CPF invalido! Tente novamente.\n");
+        }
+    } while (!validarCPF(lista[*qtd].dados.cpf));
 
     lista[*qtd].dados.ativo = 1;
     (*qtd)++;
@@ -105,22 +115,34 @@ void atualizarAluno(Aluno lista[], int qtd) {
 
             printf("Digite o novo sexo (M/F): ");
             scanf(" %c", &lista[i].dados.sexo);
-            while (lista[i].dados.sexo != 'M' && lista[i].dados.sexo != 'm' && 
-                   lista[i].dados.sexo != 'F' && lista[i].dados.sexo != 'f') {
+        while (lista[i].dados.sexo != 'M' && lista[i].dados.sexo != 'm' && 
+                lista[i].dados.sexo != 'F' && lista[i].dados.sexo != 'f') {
                 printf("Sexo invalido! Digite M ou F: ");
                 scanf(" %c", &lista[i].dados.sexo);
-            }
+        }
             limparBuffer();
 
-            printf("Digite a nova data de nascimento (dd mm aaaa): ");
+        do {
+            printf("Digite a data de nascimento (dd mm aaaa): ");
             scanf("%d %d %d", &lista[i].dados.dataNascimento.dia,
-                                &lista[i].dados.dataNascimento.mes,
-                                &lista[i].dados.dataNascimento.ano);
+                        &lista[i].dados.dataNascimento.mes,
+                        &lista[i].dados.dataNascimento.ano);
+
             limparBuffer();
 
-            printf("Digite o novo CPF: ");
-            fgets(lista[i].dados.cpf, 15, stdin);
-            lista[i].dados.cpf[strcspn(lista[i].dados.cpf, "\n")] = 0;
+            if (!validarData(lista[i].dados.dataNascimento)) {
+            printf("Data invalida! Tente novamente.\n");
+            }
+        } while (!validarData(lista[i].dados.dataNascimento));
+
+        do {
+                printf("Digite o novo CPF: ");
+                fgets(lista[i].dados.cpf, 15, stdin);
+                lista[i].dados.cpf[strcspn(lista[i].dados.cpf, "\n")] = 0;
+                if (!validarCPF(lista[i].dados.cpf)) {
+                    printf("CPF invalido! Tente novamente.\n");
+                }
+        } while (!validarCPF(lista[i].dados.cpf));
 
             encontrado = 1;
             printf("Aluno de matricula %d atualizado com sucesso!\n", matricula);
@@ -192,14 +214,27 @@ void excluirAluno(Aluno lista[], int qtd) {
     
     limparBuffer();
     
-    printf("Digite a data de nascimento (dd mm aaaa): ");
-    scanf("%d %d %d", &lista[*qtd].dados.dataNascimento.dia, &lista[*qtd].dados.dataNascimento.mes, &lista[*qtd].dados.dataNascimento.ano);
-    
-    limparBuffer();
-    
-    printf("Digite o CPF: ");
-    fgets(lista[*qtd].dados.cpf, 15, stdin);
-    lista[*qtd].dados.cpf[strcspn(lista[*qtd].dados.cpf, "\n")] = 0;
+    do {
+        printf("Digite a data de nascimento (dd mm aaaa): ");
+        scanf("%d %d %d", &lista[*qtd].dados.dataNascimento.dia,
+                            &lista[*qtd].dados.dataNascimento.mes,
+                            &lista[*qtd].dados.dataNascimento.ano);
+
+        limparBuffer();
+
+        if (!validarData(lista[*qtd].dados.dataNascimento)) {
+            printf("Data invalida! Tente novamente.\n");
+        }
+    } while (!validarData(lista[*qtd].dados.dataNascimento));
+
+    do {
+        printf("Digite o novo CPF: ");
+        fgets(lista[*qtd].dados.cpf, 15, stdin);
+            lista[*qtd].dados.cpf[strcspn(lista[*qtd].dados.cpf, "\n")] = 0;
+        if (!validarCPF(lista[*qtd].dados.cpf)) {
+            printf("CPF invalido! Tente novamente.\n");
+        }
+    } while (!validarCPF(lista[*qtd].dados.cpf));
 
     lista[*qtd].dados.ativo = 1;
     (*qtd)++;
@@ -252,11 +287,18 @@ void atualizarProfessor(Professor lista[], int qtd) {
             }
             limparBuffer();
 
-            printf("Digite a nova data de nascimento (dd mm aaaa): ");
-            scanf("%d %d %d", &lista[i].dados.dataNascimento.dia,
-                                &lista[i].dados.dataNascimento.mes,
-                                &lista[i].dados.dataNascimento.ano);
-            limparBuffer();
+            do {
+                printf("Digite a data de nascimento (dd mm aaaa): ");
+                scanf("%d %d %d", &lista[i].dados.dataNascimento.dia,
+                            &lista[i].dados.dataNascimento.mes,
+                            &lista[i].dados.dataNascimento.ano);
+
+                 limparBuffer();
+
+                if (!validarData(lista[i].dados.dataNascimento)) {
+                printf("Data invalida! Tente novamente.\n");
+                }
+            } while (!validarData(lista[i].dados.dataNascimento));
 
             printf("Digite o novo CPF: ");
             fgets(lista[i].dados.cpf, 15, stdin);
@@ -482,4 +524,68 @@ void excluirDisciplina(Disciplina listaDisc[], int qtdDisc) {
     if (!encontrado) {
         printf("Disciplina com o codigo %d nao encontrada ou ja excluida.\n", codigo);
     }
+}
+
+int validarData(Data data) {
+    // Validação básica
+    if (data.mes < 1 || data.mes > 12 || data.dia < 1 || data.ano <= 0) {
+        return 0;
+    }
+
+    // Validação de dias por mês
+    if (data.mes == 2) { // Fevereiro
+        int bissexto = (data.ano % 4 == 0 && data.ano % 100 != 0) || (data.ano % 400 == 0);
+        if (bissexto) {
+            if (data.dia > 29) return 0;
+        } else {
+            if (data.dia > 28) return 0;
+        }
+    } else if (data.mes == 4 || data.mes == 6 || data.mes == 9 || data.mes == 11) { // Meses com 30 dias
+        if (data.dia > 30) return 0;
+    } else { // Meses com 31 dias
+        if (data.dia > 31) return 0;
+    }
+
+    return 1; // Data válida
+}
+
+int validarCPF(char cpfStr[]) {
+    int cpf[11];
+    int i, j = 0;
+
+   
+    for (i = 0; cpfStr[i] != '\0'; i++) {
+        if (cpfStr[i] >= '0' && cpfStr[i] <= '9') {
+            if (j < 11) {
+                cpf[j++] = cpfStr[i] - '0';
+            }
+        }
+    }
+
+    if (j != 11) return 0; 
+
+    for (i = 0; i < 10; i++) {
+        if (cpf[i] != cpf[i + 1]) break;
+    }
+    if (i == 10) return 0;
+
+    // Primeiero dígito verificador
+    int soma = 0;
+    for (i = 0, j = 10; i < 9; i++, j--) {
+        soma += cpf[i] * j;
+    }
+    int resto = (soma * 10) % 11;
+    if (resto == 10) resto = 0;
+    if (resto != cpf[9]) return 0;
+
+    // Segundo dígito verificador
+    soma = 0;
+    for (i = 0, j = 11; i < 10; i++, j--) {
+        soma += cpf[i] * j;
+    }
+    resto = (soma * 10) % 11;
+    if (resto == 10) resto = 0;
+    if (resto != cpf[10]) return 0;
+
+    return 1;
 }
