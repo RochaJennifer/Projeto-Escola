@@ -21,6 +21,7 @@ int main(void) {
         printf("1 - Aluno\n");
         printf("2 - Professor\n");
         printf("3 - Disciplina\n");
+        printf("4 - Relatórios\n");
         printf("Digite sua opcao: ");
         scanf("%d", &opcao);
 
@@ -94,7 +95,7 @@ int main(void) {
                 }
                 break;
             }
-            case 3:
+            case 3:{
                 int sairDisciplina = 0;
                 while(!sairDisciplina){
                     int opcaoDisciplina = menuDisciplina();
@@ -108,7 +109,15 @@ int main(void) {
                             break;
                         }
                         case 2: {
-                            printf("\nListar Disciplinas (nao implementado)\n"); 
+                            listarDisciplinas(listaDisc, qtdDisc, listaProfessor, qtdProfessor);
+                            break;
+                        }
+                        case 3: {
+                            atualizarDisciplina(listaDisc, qtdDisc, listaProfessor, qtdProfessor);
+                            break;
+                        }
+                        case 4: {
+                            excluirDisciplina(listaDisc, qtdDisc);
                             break;
                         }
                         default: 
@@ -117,7 +126,11 @@ int main(void) {
                     }
                 }
                 break;
-            
+            }
+            case 4: {
+                printf("\nRelatórios (não implementado)\n");
+                break;
+            }
             default:
                 printf("\nOpcao invalida\n");
                 break;

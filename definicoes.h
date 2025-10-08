@@ -53,5 +53,8 @@ void excluirProfessor(Professor lista[], int qtd);
 
 int menuDisciplina();
 void cadastrarDisciplina(Disciplina listaDisc[], int *qtdDisc, Professor listaProf[], int qtdProf);
+void listarDisciplinas(Disciplina listaDisc[], int qtdDisc, Professor listaProf[], int qtdProf);
+void atualizarDisciplina(Disciplina listaDisc[], int qtdDisc, Professor listaProf[], int qtdProf);
+void excluirDisciplina(Disciplina listaDisc[], int qtdDisc);
 
 #endif 
