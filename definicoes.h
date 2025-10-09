@@ -49,6 +49,10 @@ void listarAlunos(Aluno lista[], int qtd);
 void atualizarAluno(Aluno lista[], int qtd);
 void excluirAluno(Aluno lista[], int qtd);
 void matricularAlunoEmDisciplina(Aluno listaAluno[], int qtdAluno, Disciplina listaDisc[], int qtdDisc);
+void listarAlunosPorSexo(Aluno lista[], int qtd, char sexo);
+void listarAlunosOrnemadosPorNome(Aluno lista[], int qtd);
+void listarAlunosPorDataNascimento(Aluno lista[], int qtd);
+void listarAlunosMatriculadosEmMenosDe3Disciplinas(Aluno listaAluno[], int qtdAluno, Disciplina listaDisc[], int qtdDisc);
 
 int menuProfessor();
 void cadastrarProfessor(Professor lista[], int *qtd);
@@ -61,8 +65,6 @@ void cadastrarDisciplina(Disciplina listaDisc[], int *qtdDisc, Professor listaPr
 void listarDisciplinas(Disciplina listaDisc[], int qtdDisc, Professor listaProf[], int qtdProf);
 void atualizarDisciplina(Disciplina listaDisc[], int qtdDisc, Professor listaProf[], int qtdProf);
 void excluirDisciplina(Disciplina listaDisc[], int qtdDisc);
-
-
-
+void listarDisciplinaComAlunos(Disciplina listaDisc[], int qtdDisc, Aluno listaAluno[], int qtdAluno);
 
 #endif 

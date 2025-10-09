@@ -44,19 +44,31 @@ int main(void) {
                             break;
                         }
                         case 2: {
-                            listarAlunos(listaAluno, qtdAluno); 
+                            atualizarAluno(listaAluno, qtdAluno); 
                             break;
                         }
                         case 3: {
-                            atualizarAluno(listaAluno, qtdAluno);
-                            break;
-                        }
-                        case 4: {
                             excluirAluno(listaAluno, qtdAluno);
                             break;
                         }
-                        case 5: {
+                        case 4: {
                             matricularAlunoEmDisciplina(listaAluno, qtdAluno, listaDisc, qtdDisc);
+                            break;
+                        }
+                        case 5: {
+                            listarAlunos(listaAluno, qtdAluno); 
+                            break;
+                        }
+                        case 6: {
+                            listarAlunosPorSexo(listaAluno, qtdAluno); 
+                            break;
+                        }
+                        case 7: {
+                            listarAlunosOrnemadosPorNome(listaAluno, qtdAluno); 
+                            break;
+                        }
+                        case 8: {
+                            listarAlunosPorDataNascimento(listaAluno, qtdAluno); 
                             break;
                         }
                         default:
@@ -81,15 +93,15 @@ int main(void) {
                             break;
                         }
                         case 2: {
-                            listarProfessores(listaProfessor, qtdProfessor); 
-                            break;
-                        }
-                        case 3: {
                             atualizarProfessor(listaProfessor, qtdProfessor);
                             break;
                         }
+                        case 3: {
+                           excluirProfessor(listaProfessor, qtdProfessor);
+                            break;
+                        }
                         case 4: {
-                            excluirProfessor(listaProfessor, qtdProfessor);
+                            listarProfessores(listaProfessor, qtdProfessor); 
                             break;
                         }
                         default:
@@ -114,16 +126,21 @@ int main(void) {
                             break;
                         }
                         case 2: {
-                            listarDisciplinas(listaDisc, qtdDisc, listaProfessor, qtdProfessor);
+                            atualizarDisciplina(listaDisc, qtdDisc, listaProfessor, qtdProfessor);
+                            
                             break;
                         }
                         case 3: {
-                            atualizarDisciplina(listaDisc, qtdDisc, listaProfessor, qtdProfessor);
+                            excluirDisciplina(listaDisc, qtdDisc);
                             break;
                         }
                         case 4: {
-                            excluirDisciplina(listaDisc, qtdDisc);
+                            listarDisciplinas(listaDisc, qtdDisc, listaProfessor, qtdProfessor);
                             break;
+                        }
+                        case 5: {
+                            listarDisciplinaComAlunos(listaDisc, qtdDisc, listaAluno, qtdAluno);
+                            break;                                                                                                                                                                                                                                                                                                                                                                                                                            ;
                         }
                         default: 
                         printf("\nOpcao invalida!\n"); 
