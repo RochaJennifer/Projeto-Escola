@@ -6,9 +6,9 @@ int menuProfessor(){
     int opcao;
     printf("\n-- Menu Professor --\n");
     printf("1 - Cadastrar Professor\n");
-    printf("2 - Listar Professores\n");
-    printf("3 - Atualizar Professor\n");
-    printf("4 - Excluir Professor\n");
+    printf("2 - Atualizar Professor\n");
+    printf("3 - Excluir Professor\n");
+    printf("4 - Listar Professores\n");
     printf("0 - Voltar ao menu principal\n");
     printf("Digite sua opcao: ");
     scanf("%d", &opcao);
