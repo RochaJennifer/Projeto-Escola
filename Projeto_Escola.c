@@ -56,7 +56,7 @@ int main(void) {
                             break;
                         }
                         case 5: {
-                            printf("Funcao de matricular aluno em disciplina ainda nao implementada.\n");
+                            matricularAlunoEmDisciplina(listaAluno, qtdAluno, listaDisc, qtdDisc);
                             break;
                         }
                         default:

@@ -178,6 +178,56 @@ void excluirAluno(Aluno lista[], int qtd) {
     }
 }
 
+void matricularAlunoEmDisciplina(Aluno listaAluno[], int qtdAluno, Disciplina listaDisc[], int qtdDisc) {
+    int matriculaAluno, codigoDisciplina;  
+    int alunoEncontrado = 0, disciplinaEncontrada = 0;
+    if (qtdAluno == 0) {
+        printf("Nenhum aluno cadastrado para matricular.\n");
+        return;
+    }
+    if (qtdDisc == 0) {
+        printf("Nenhuma disciplina cadastrada para matricular.\n");
+        return;
+    }
+    printf("\n-- Matricular Aluno em Disciplina --\n");
+    printf("Digite a matrícula do aluno: ");    
+    scanf("%d", &matriculaAluno);
+    for (int i = 0; i < qtdAluno; i++) {
+        if (listaAluno[i].dados.matricula == matriculaAluno && listaAluno[i].dados.ativo == 1) {
+            alunoEncontrado = 1;
+            break;
+        }
+    }
+    if (!alunoEncontrado) {
+        printf("Aluno com a matrícula %d não encontrado ou está excluído.\n", matriculaAluno);
+        return;
+    }
+    printf("Digite o código da disciplina: ");    
+    scanf("%d", &codigoDisciplina);
+    for (int i = 0; i < qtdDisc; i++) {
+        if (listaDisc[i].codigo == codigoDisciplina && listaDisc[i].ativo == 1) {
+            disciplinaEncontrada = 1;
+            if (listaDisc[i].qtd_alunos_matriculados >= VAGAS_DISCIPLINA) {
+                printf("A disciplina %d está cheia. Não é possível matricular mais alunos.\n", codigoDisciplina);
+                return;
+            }
+            for (int j = 0; j < listaDisc[i].qtd_alunos_matriculados; j++) {
+                if (listaDisc[i].alunos_matriculados[j] == matriculaAluno) {
+                    printf("Aluno já está matriculado na disciplina %d.\n", codigoDisciplina);
+                    return;
+                }
+            }
+            listaDisc[i].alunos_matriculados[listaDisc[i].qtd_alunos_matriculados] = matriculaAluno;
+            listaDisc[i].qtd_alunos_matriculados++;
+            printf("Aluno com matrícula %d matriculado com sucesso na disciplina %d.\n", matriculaAluno, codigoDisciplina);
+            return;
+        }
+    }
+    if (!disciplinaEncontrada) {
+        printf("Disciplina com o código %d não encontrada ou está excluída.\n", codigoDisciplina);
+    }   
+}
+
     int menuProfessor(){
     int opcao;
     printf("\n-- Menu Professor --\n");

@@ -48,6 +48,7 @@ void cadastrarAluno(Aluno lista[], int *qtd);
 void listarAlunos(Aluno lista[], int qtd);
 void atualizarAluno(Aluno lista[], int qtd);
 void excluirAluno(Aluno lista[], int qtd);
+void matricularAlunoEmDisciplina(Aluno listaAluno[], int qtdAluno, Disciplina listaDisc[], int qtdDisc);
 
 int menuProfessor();
 void cadastrarProfessor(Professor lista[], int *qtd);
