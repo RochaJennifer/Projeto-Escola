@@ -60,7 +60,7 @@ int main(void) {
                             break;
                         }
                         case 6: {
-                            listarAlunosPorSexo(listaAluno, qtdAluno); 
+                            listarAlunosPorSexo(listaAluno, qtdAluno, 'F');
                             break;
                         }
                         case 7: {
