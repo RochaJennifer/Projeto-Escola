@@ -4,6 +4,7 @@
 #define TAM_ALUNO 3
 #define TAM_PROFESSOR 3
 #define TAM_DISCIPLINA 3
+#define VAGAS_DISCIPLINA 40
 typedef struct {
     int dia;
     int mes;
@@ -32,7 +33,7 @@ typedef struct{
     char nome[100];
     int semestre;
     int professor_matricula; 
-    int alunos_matriculados[TAM_DISCIPLINA];
+    int alunos_matriculados[VAGAS_DISCIPLINA];
     int qtd_alunos_matriculados;
     int ativo;
 } Disciplina;

@@ -55,6 +55,10 @@ int main(void) {
                             excluirAluno(listaAluno, qtdAluno);
                             break;
                         }
+                        case 5: {
+                            printf("Funcao de matricular aluno em disciplina ainda nao implementada.\n");
+                            break;
+                        }
                         default:
                             printf("\nOpcao invalida!\n");
                             break;
