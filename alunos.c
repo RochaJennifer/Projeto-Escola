@@ -5,9 +5,14 @@
 int menuAluno(){
     int opcao;
     printf("\n1 - Cadastrar Aluno\n");
-    printf("2 - Listar Alunos\n");
-    printf("3 - Atualizar Aluno\n");
-    printf("4 - Excluir Aluno\n");
+    printf("2 - Atualizar Aluno\n");
+    printf("3 - Excluir Aluno\n");
+    printf("4 - Matricular Aluno em Disciplina\n");
+    printf("5 - Listar Alunos\n");
+    printf("6 - Listar Alunos por Sexo\n");
+    printf("7 - Listar Alunos Ordenados por Nome\n");
+    printf("8 - Listar Alunos por Data de Nascimento\n");
+    printf("9 - Listar Alunos Matriculados em Menos de 3 Disciplinas\n");
     printf("0 - Voltar ao menu principal\n");
     printf("Digite sua opcao: ");
     scanf("%d", &opcao);
@@ -221,4 +226,92 @@ void matricularAlunoEmDisciplina(Aluno listaAluno[], int qtdAluno, Disciplina li
     if (!disciplinaEncontrada) {
         printf("Disciplina com o código %d não encontrada ou está excluída.\n", codigoDisciplina);
     }   
+}
+
+void listarAlunosPorSexo(Aluno lista[], int qtd, char sexo) {
+    printf("\n-- Lista de Alunos do sexo %c --\n", sexo);
+    int encontrado = 0;
+    for (int i = 0; i < qtd; i++) {
+        if (lista[i].dados.ativo == 1 && (lista[i].dados.sexo == sexo || lista[i].dados.sexo == (sexo ^ 32))) {
+            printf("-------------------------\n");
+            printf("Matrícula: %d\n", lista[i].dados.matricula);
+            printf("Nome: %s\n", lista[i].dados.nome);
+            printf("Sexo: %c\n", lista[i].dados.sexo);
+            printf("Data de Nasc.: %02d/%02d/%d\n", lista[i].dados.dataNascimento.dia,
+                                                    lista[i].dados.dataNascimento.mes,
+                                                    lista[i].dados.dataNascimento.ano);
+            printf("CPF: %s\n", lista[i].dados.cpf);
+            encontrado = 1;
+        }
+    }
+    if (!encontrado) {
+        printf("Nenhum aluno do sexo %c encontrado.\n", sexo);
+    }
+    printf("-------------------------\n");
+}
+
+void listarAlunosOrnemadosPorNome(Aluno lista[], int qtd) {
+    // Implementação de ordenação por nome (Bubble Sort)
+    for (int i = 0; i < qtd - 1; i++) {
+        for (int j = 0; j < qtd - i - 1; j++) {
+            if (strcmp(lista[j].dados.nome, lista[j + 1].dados.nome) > 0) {
+                Aluno temp = lista[j];
+                lista[j] = lista[j + 1];
+                lista[j + 1] = temp;
+            }
+        }
+    }
+    listarAlunos(lista, qtd);
+}
+
+void listarAlunosPorDataNascimento(Aluno lista[], int qtd) {
+    // Implementação de ordenação por data de nascimento (Bubble Sort)
+    for (int i = 0; i < qtd - 1; i++) {
+        for (int j = 0; j < qtd - i - 1; j++) {
+            Data data1 = lista[j].dados.dataNascimento;
+            Data data2 = lista[j + 1].dados.dataNascimento;
+            if (data1.ano > data2.ano || 
+                (data1.ano == data2.ano && data1.mes > data2.mes) || 
+                (data1.ano == data2.ano && data1.mes == data2.mes && data1.dia > data2.dia)) {
+                Aluno temp = lista[j];
+                lista[j] = lista[j + 1];
+                lista[j + 1] = temp;
+            }
+        }
+    }
+    listarAlunos(lista, qtd);
+}
+
+void listarAlunosMatriculadosEmMenosDe3Disciplinas(Aluno listaAluno[], int qtdAluno, Disciplina listaDisc[], int qtdDisc) {
+    printf("\n-- Alunos Matriculados em Menos de 3 Disciplinas --\n");
+    int encontrado = 0;
+    for (int i = 0; i < qtdAluno; i++) {
+        if (listaAluno[i].dados.ativo == 1) {
+            int contador = 0;
+            for (int j = 0; j < qtdDisc; j++) {
+                for (int k = 0; k < listaDisc[j].qtd_alunos_matriculados; k++) {
+                    if (listaDisc[j].alunos_matriculados[k] == listaAluno[i].dados.matricula) {
+                        contador++;
+                        break;
+                    }
+                }
+            }
+            if (contador < 3) {
+                printf("-------------------------\n");
+                printf("Matrícula: %d\n", listaAluno[i].dados.matricula);
+                printf("Nome: %s\n", listaAluno[i].dados.nome);
+                printf("Sexo: %c\n", listaAluno[i].dados.sexo);
+                printf("Data de Nasc.: %02d/%02d/%d\n", listaAluno[i].dados.dataNascimento.dia,
+                                                        listaAluno[i].dados.dataNascimento.mes,
+                                                        listaAluno[i].dados.dataNascimento.ano);
+                printf("CPF: %s\n", listaAluno[i].dados.cpf);
+                printf("Número de Disciplinas Matriculadas: %d\n", contador);
+                encontrado = 1;
+            }
+        }
+    }
+    if (!encontrado) {
+        printf("Nenhum aluno encontrado que esteja matriculado em menos de 3 disciplinas.\n");
+    }
+    printf("-------------------------\n");
 }
