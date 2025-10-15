@@ -43,6 +43,10 @@ int validarCPF(char cpf[]);
 
 void limparBuffer();
 
+int menuRelatorios();
+void listarAniversariantesDoMes(Aluno listaAluno[], int qtdAluno, Professor listaProf[], int qtdProf);
+void buscarPorNome(Aluno listaAluno[], int qtdAluno, Professor listaProf[], int qtdProf);
+
 int menuAluno();
 void cadastrarAluno(Aluno lista[], int *qtd);
 void listarAlunos(Aluno lista[], int qtd);
@@ -69,5 +73,6 @@ void listarDisciplinas(Disciplina listaDisc[], int qtdDisc, Professor listaProf[
 void atualizarDisciplina(Disciplina listaDisc[], int qtdDisc, Professor listaProf[], int qtdProf);
 void excluirDisciplina(Disciplina listaDisc[], int qtdDisc);
 void listarDisciplinaComAlunos(Disciplina listaDisc[], int qtdDisc, Aluno listaAluno[], int qtdAluno);
+void listarDisciplinasComMaisDe40Alunos(Disciplina listaDisc[], int qtdDisc);
 
 #endif 

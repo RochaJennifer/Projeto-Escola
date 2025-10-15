@@ -21,6 +21,8 @@ int main(void) {
         printf("1 - Aluno\n");
         printf("2 - Professor\n");
         printf("3 - Disciplina\n");
+        printf("4 - Relatorios\n");
+        printf("------------------------\n");
         printf("Digite sua opcao: ");
         scanf("%d", &opcao);
 
@@ -154,6 +156,10 @@ int main(void) {
                             listarDisciplinaComAlunos(listaDisc, qtdDisc, listaAluno, qtdAluno);
                             break;                                                                                                                                                                                                                                                                                                                                                                                                                            ;
                         }
+                        case 6: {
+                            listarDisciplinasComMaisDe40Alunos(listaDisc, qtdDisc);
+                            break;
+                        }
                         default: 
                         printf("\nOpcao invalida!\n"); 
                         break;
@@ -161,6 +167,31 @@ int main(void) {
                 }
                 break;
                 }
+            case 4: {
+                printf("\n-- Módulo Relatórios --\n");
+                int sairRelatorios = 0;
+                while(!sairRelatorios){
+                    int opcaoRelatorios = menuRelatorios();     
+                    switch(opcaoRelatorios){
+                        case 0: {
+                            sairRelatorios = 1; 
+                            break;
+                        }
+                        case 1: {
+                            listarAniversariantesDoMes(listaAluno, qtdAluno, listaProfessor, qtdProfessor); 
+                            break;
+                        }
+                        case 2: {
+                            buscarPorNome(listaAluno, qtdAluno, listaProfessor, qtdProfessor);
+                            break;
+                        }
+                        default:
+                            printf("\nOpcao invalida!\n");
+                            break;
+                    }
+                }
+                break;
+            }
             default:
                 printf("\nOpcao invalida\n");
             break;
