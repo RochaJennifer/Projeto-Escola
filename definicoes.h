@@ -1,10 +1,10 @@
 #ifndef DEFINICOES_H
 #define DEFINICOES_H
 
-#define TAM_ALUNO 3
-#define TAM_PROFESSOR 3
-#define TAM_DISCIPLINA 3
-#define VAGAS_DISCIPLINA 40
+#define TAM_ALUNO 500
+#define TAM_PROFESSOR 100
+#define TAM_DISCIPLINA 100
+#define VAGAS_DISCIPLINA 100
 typedef struct {
     int dia;
     int mes;
@@ -59,6 +59,9 @@ void cadastrarProfessor(Professor lista[], int *qtd);
 void listarProfessores(Professor lista[], int qtd);
 void atualizarProfessor(Professor lista[], int qtd);
 void excluirProfessor(Professor lista[], int qtd);
+void listarProfessoresPorSexo(Professor lista[], int qtd, char sexo);
+void listarProfessoresPorNome(Professor lista[], int qtd);
+void listarProfessoresPorDataNascimento(Professor lista[], int qtd);
 
 int menuDisciplina();
 void cadastrarDisciplina(Disciplina listaDisc[], int *qtdDisc, Professor listaProf[], int qtdProf);

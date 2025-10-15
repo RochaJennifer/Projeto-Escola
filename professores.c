@@ -9,6 +9,9 @@ int menuProfessor(){
     printf("2 - Atualizar Professor\n");
     printf("3 - Excluir Professor\n");
     printf("4 - Listar Professores\n");
+    printf("5 - Listar Professores por Sexo\n");   
+    printf("6 - Listar Professores por Nome\n");
+    printf("7 - Listar Professores por Data de Nascimento\n");
     printf("0 - Voltar ao menu principal\n");
     printf("Digite sua opcao: ");
     scanf("%d", &opcao);
@@ -161,4 +164,103 @@ void excluirProfessor(Professor lista[], int qtd) {
     if (!encontrado) {
         printf("Professor com a matricula %d não encontrado ou já excluído.\n", matricula);
     }
+}
+
+void listarProfessoresPorSexo(Professor lista[], int qtd, char sexo) {
+    printf("\n-- Lista de Professores por Sexo --\n");
+    if (qtd == 0) {
+        printf("Nenhum professor cadastrado.\n");
+        return;
+    }
+    for (int i = 0; i < qtd; i++) {
+        if (lista[i].dados.ativo == 1 && (lista[i].dados.sexo == sexo || lista[i].dados.sexo == sexo + 32)) {
+            printf("-------------------------\n");
+            printf("Matrícula: %d\n", lista[i].dados.matricula);
+            printf("Nome: %s\n", lista[i].dados.nome);
+            printf("Sexo: %c\n", lista[i].dados.sexo);
+            printf("Data de Nasc.: %02d/%02d/%d\n", lista[i].dados.dataNascimento.dia,
+                                                    lista[i].dados.dataNascimento.mes,
+                                                    lista[i].dados.dataNascimento.ano);
+            printf("CPF: %s\n", lista[i].dados.cpf);
+        }
+    }
+    printf("-------------------------\n");
+}
+
+void listarProfessoresPorNome(Professor lista[], int qtd) {
+    printf("\n-- Lista de Professores por Nome --\n");
+    if (qtd == 0) {
+        printf("Nenhum professor cadastrado.\n");
+        return;
+    }
+
+    // Criar uma cópia da lista para ordenar
+    Professor listaOrdenada[TAM_PROFESSOR];
+    memcpy(listaOrdenada, lista, sizeof(Professor) * qtd);
+
+    // Ordenar a lista por nome usando Bubble Sort
+    for (int i = 0; i < qtd - 1; i++) {
+        for (int j = 0; j < qtd - i - 1; j++) {
+            if (strcmp(listaOrdenada[j].dados.nome, listaOrdenada[j + 1].dados.nome) > 0) {
+                Professor temp = listaOrdenada[j];
+                listaOrdenada[j] = listaOrdenada[j + 1];
+                listaOrdenada[j + 1] = temp;
+            }
+        }
+    }
+
+    // Listar os professores ordenados
+    for (int i = 0; i < qtd; i++) {
+        if (listaOrdenada[i].dados.ativo == 1) {
+            printf("-------------------------\n");
+            printf("Matrícula: %d\n", listaOrdenada[i].dados.matricula);
+            printf("Nome: %s\n", listaOrdenada[i].dados.nome);
+            printf("Sexo: %c\n", listaOrdenada[i].dados.sexo);
+            printf("Data de Nasc.: %02d/%02d/%d\n", listaOrdenada[i].dados.dataNascimento.dia,
+                                                    listaOrdenada[i].dados.dataNascimento.mes,
+                                                    listaOrdenada[i].dados.dataNascimento.ano);
+            printf("CPF: %s\n", listaOrdenada[i].dados.cpf);
+        }
+    }
+    printf("-------------------------\n");
+}
+
+void listarProfessoresPorDataNascimento(Professor lista[], int qtd) {
+    printf("\n-- Lista de Professores por Data de Nascimento --\n");
+    if (qtd == 0) {
+        printf("Nenhum professor cadastrado.\n");
+        return;
+    }
+
+    Professor listaOrdenada[TAM_PROFESSOR];
+    memcpy(listaOrdenada, lista, sizeof(Professor) * qtd);
+
+    for (int i = 0; i < qtd - 1; i++) {
+        for (int j = 0; j < qtd - i - 1; j++) {
+            Data data1 = listaOrdenada[j].dados.dataNascimento;
+            Data data2 = listaOrdenada[j + 1].dados.dataNascimento;
+
+            if (data1.ano > data2.ano || 
+                (data1.ano == data2.ano && data1.mes > data2.mes) || 
+                (data1.ano == data2.ano && data1.mes == data2.mes && data1.dia > data2.dia)) {
+                Professor temp = listaOrdenada[j];
+                listaOrdenada[j] = listaOrdenada[j + 1];
+                listaOrdenada[j + 1] = temp;
+            }
+        }
+    }
+
+    for (int i = 0; i < qtd; i++) {
+        if (listaOrdenada[i].dados.ativo == 1) {
+            printf("-------------------------\n");
+            printf("Matrícula: %d\n", listaOrdenada[i].dados.matricula);
+            printf("Nome: %s\n", listaOrdenada[i].dados.nome);
+            printf("Sexo: %c\n", listaOrdenada[i].dados.sexo);
+            printf("Data de Nasc.: %02d/%02d/%d\n", listaOrdenada[i].dados.dataNascimento.dia,
+                                                    listaOrdenada[i].dados.dataNascimento.mes,
+                                                    listaOrdenada[i].dados.dataNascimento.ano);
+            printf("CPF: %s\n", listaOrdenada[i].dados.cpf);
+        }
+    }
+    printf("-------------------------\n");
 }

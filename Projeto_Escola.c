@@ -104,6 +104,18 @@ int main(void) {
                             listarProfessores(listaProfessor, qtdProfessor); 
                             break;
                         }
+                        case 5: {
+                            listarProfessoresPorSexo(listaProfessor, qtdProfessor, 'F');
+                            break;
+                        }
+                        case 6: {
+                            listarProfessoresPorNome(listaProfessor, qtdProfessor); 
+                            break;
+                        }
+                        case 7: {
+                            listarProfessoresPorDataNascimento(listaProfessor, qtdProfessor); 
+                            break;
+                        }
                         default:
                             printf("\nOpcao invalida!\n");
                             break;
