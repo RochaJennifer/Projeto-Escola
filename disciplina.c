@@ -227,3 +227,23 @@ void listarDisciplinaComAlunos(Disciplina listaDisc[], int qtdDisc, Aluno listaA
         printf("Disciplina com o codigo %d nao encontrada ou esta excluida.\n", codigo);
     }
 }
+
+void listarDisciplinasComMaisDe40Alunos(Disciplina listaDisc[], int qtdDisc) {
+    printf("\n-- Disciplinas com Mais de 40 Alunos Matriculados --\n");
+    int encontrou = 0;
+    for (int i = 0; i < qtdDisc; i++) {
+        if (listaDisc[i].ativo == 1 && listaDisc[i].qtd_alunos_matriculados > 40) {
+            printf("-------------------------\n");
+            printf("Codigo: %d\n", listaDisc[i].codigo);
+            printf("Nome: %s\n", listaDisc[i].nome);
+            printf("Semestre: %d\n", listaDisc[i].semestre);
+            printf("Quantidade de Alunos Matriculados: %d\n", listaDisc[i].qtd_alunos_matriculados);
+            encontrou = 1;
+        }
+    }
+    if (!encontrou) {
+        printf("Nenhuma disciplina com mais de 40 alunos matriculados.\n");
+    }
+    printf("-------------------------\n");
+}
+
