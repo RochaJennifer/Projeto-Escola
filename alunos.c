@@ -251,7 +251,6 @@ void listarAlunosPorSexo(Aluno lista[], int qtd, char sexo) {
 }
 
 void listarAlunosOrnemadosPorNome(Aluno lista[], int qtd) {
-    // Implementação de ordenação por nome (Bubble Sort)
     for (int i = 0; i < qtd - 1; i++) {
         for (int j = 0; j < qtd - i - 1; j++) {
             if (strcmp(lista[j].dados.nome, lista[j + 1].dados.nome) > 0) {
@@ -265,7 +264,6 @@ void listarAlunosOrnemadosPorNome(Aluno lista[], int qtd) {
 }
 
 void listarAlunosPorDataNascimento(Aluno lista[], int qtd) {
-    // Implementação de ordenação por data de nascimento (Bubble Sort)
     for (int i = 0; i < qtd - 1; i++) {
         for (int j = 0; j < qtd - i - 1; j++) {
             Data data1 = lista[j].dados.dataNascimento;
