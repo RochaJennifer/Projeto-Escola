@@ -62,7 +62,9 @@ int main(void) {
                             break;
                         }
                         case 6: {
-                            listarAlunosPorSexo(listaAluno, qtdAluno, 'F');
+                            char sexoBusca;
+                                printf("\nDigite o sexo que deseja listar (M/F): ");
+                                listarAlunosPorSexo(listaAluno, qtdAluno, sexoBusca);
                             break;
                         }
                         case 7: {
@@ -107,7 +109,9 @@ int main(void) {
                             break;
                         }
                         case 5: {
-                            listarProfessoresPorSexo(listaProfessor, qtdProfessor, 'F');
+                            char sexoBusca;
+                            printf("\nDigite o sexo que deseja listar (F/M): ");
+                            listarProfessoresPorSexo(listaProfessor, qtdProfessor, sexoBusca);
                             break;
                         }
                         case 6: {
